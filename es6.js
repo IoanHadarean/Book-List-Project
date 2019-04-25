@@ -95,13 +95,24 @@ class Store {
     }
     
     static removeBook(isbn) {
-        console.log(isbn);
+        const books = Store.getBooks();
+        
+        books.forEach(function(book, index) {
+            console.log(book.isbn);
+            if (book.isbn === isbn) {
+                books.splice(index, 1);
+            }
+        });
+        
+        localStorage.setItem('books', JSON.stringify(books));
+        
     }
 }
 
 
 // DOM Load Event
 document.addEventListener('DOMContentLoaded', Store.displayBooks);
+
 
 
 
